@@ -40,7 +40,7 @@ public class BatchConfiguration {
                 .name("EmployeeFileReader")
                 .resource(new ClassPathResource("employee-data.csv"))
                 .delimited()
-                .names(new String[]{"firstName", "lastName"})
+                .names(new String[]{"firstName", "lastName","age"})
                 .fieldSetMapper(new BeanWrapperFieldSetMapper<EmployeeDao>() {{
                     setTargetType(EmployeeDao.class);
                 }})
@@ -56,7 +56,7 @@ public class BatchConfiguration {
     public JdbcBatchItemWriter<EmployeeDao> writer(DataSource dataSource) {
         return new JdbcBatchItemWriterBuilder<EmployeeDao>()
                 .itemSqlParameterSourceProvider(new BeanPropertyItemSqlParameterSourceProvider<>())
-                .sql("INSERT INTO employee (first_name, last_name) VALUES (:firstName, :lastName)")
+                .sql("INSERT INTO employee (first_name, last_name, age) VALUES (:firstName, :lastName, :age)")
                 .dataSource(dataSource)
                 .build();
     }

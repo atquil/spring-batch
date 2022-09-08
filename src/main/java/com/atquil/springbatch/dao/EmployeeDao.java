@@ -12,5 +12,6 @@ public class EmployeeDao {
 
     private String lastName;
     private String firstName;
+    private String age;
 
 }

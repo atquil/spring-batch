@@ -25,13 +25,14 @@ public class JobCompletionNotificationListener extends JobExecutionListenerSuppo
     @Override
     public void afterJob(JobExecution jobExecution) {
         if(jobExecution.getStatus() == BatchStatus.COMPLETED) {
-            log.info("***** Job status changed to completed ********* ");
+            log.info("***** Job Status is completed and we will see employee whose age is less than 50 ********* ");
 
-            jdbcTemplate.query("SELECT first_name, last_name FROM employee",
+            jdbcTemplate.query("SELECT first_name, last_name, age FROM employee",
                     (rs, row) -> new EmployeeDao(
                             rs.getString(1),
-                            rs.getString(2))
-            ).forEach(employeeDao -> log.info("After Processing <" + employeeDao + "> in the database."));
+                            rs.getString(2),
+                            rs.getString(3))
+            ).forEach(employeeDao -> log.info("Employee Detail:"+employeeDao.getFirstName()+ " "+ employeeDao.getLastName()+" with age: "+employeeDao.getAge()));
         }
     }
 }
