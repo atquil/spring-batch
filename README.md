@@ -21,7 +21,7 @@ Features :
 
 ## Spring Batch Architecture
 
-![Spring Batch Architecture](SpringBatchArchitecture.png)
+![Spring Batch Architecture](Spring%20Batch%20Architecture.jpg)
 
 ## When to use it ?
 
