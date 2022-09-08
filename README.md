@@ -12,7 +12,7 @@ Why ? To efficiently process, large number of iterative data jobs
 It is lightweight comprehensive framework which enable development of robust batch applications 
 ```
 
-Features : 
+## Features : 
 
 1. **Efficiency** : When resource are provided, it allows company to efficiently process data.
 2. **Chunk based processing** : Helps in setting limitation for data processing 
