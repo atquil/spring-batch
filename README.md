@@ -8,8 +8,8 @@ Why ? To efficiently process, large number of iterative data jobs
 
 # Spring batch
 
-```aidl
-It's  lightweight comprehensive framework which enable development of robust batch applications. 
+```
+It is lightweight comprehensive framework which enable development of robust batch applications 
 ```
 
 Features : 
