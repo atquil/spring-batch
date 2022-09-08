@@ -10,4 +10,11 @@ public class SpringBatchApplication {
 		SpringApplication.run(SpringBatchApplication.class, args);
 	}
 
+	// If you want to run it without controller - self execute then use this
+	/*
+	public static void main(String[] args) throws Exception {
+		System.exit(SpringApplication.exit(SpringApplication.run(SpringBatchApplication.class, args)));
+	}
+	*/
+
 }
