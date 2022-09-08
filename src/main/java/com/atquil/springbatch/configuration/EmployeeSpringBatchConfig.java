@@ -65,7 +65,7 @@ public class EmployeeSpringBatchConfig {
                 .name("EmployeeItemReader")
                 .resource(new ClassPathResource("EmployeeData.csv"))
                 .delimited()
-                .names(new String[]{"firstName", "lastName","age"})
+                .names(new String[]{"firstName", "lastName"})
                 .fieldSetMapper(new BeanWrapperFieldSetMapper<Employee>() {{
                     setTargetType(Employee.class);
                 }})
@@ -83,7 +83,7 @@ public class EmployeeSpringBatchConfig {
     public JdbcBatchItemWriter<Employee> writer(DataSource dataSource) {
         return new JdbcBatchItemWriterBuilder<Employee>()
                 .itemSqlParameterSourceProvider(new BeanPropertyItemSqlParameterSourceProvider<>())
-                .sql("INSERT INTO employee (first_name, last_name , age) VALUES (:firstName, :lastName, :age)")
+                .sql("INSERT INTO employee (first_name, last_name) VALUES (:firstName, :lastName)")
                 .dataSource(dataSource)
                 .build();
     }

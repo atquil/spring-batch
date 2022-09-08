@@ -22,7 +22,7 @@ dependencies {
 
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-batch'
-	implementation 'org.hsqldb:hsqldb:2.7.0'
+	runtimeOnly 'org.hsqldb:hsqldb'
 
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'

@@ -25,12 +25,11 @@ public class EmployeeJobCompleteListener  extends JobExecutionListenerSupport {
         if(jobExecution.getStatus() == BatchStatus.COMPLETED) {
             log.info("!!! JOB FINISHED! Time to verify the results");
 
-            jdbcTemplate.query("SELECT first_name, last_name, age FROM employee",
+            jdbcTemplate.query("SELECT first_name, last_name FROM employee",
                     (rs, row) -> new Employee(
                             rs.getString(1),
-                            rs.getString(2),
-                            rs.getString(3))
-            ).forEach(employee -> log.info("Employee : " + employee + "> in the database."));
+                            rs.getString(2))
+            ).forEach(person -> log.info("Found <" + person + "> in the database."));
         }
     }
 }
