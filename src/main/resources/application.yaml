@@ -1,0 +1,20 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:atquil
+    username: user
+    password:
+    driverClassName: org.h2.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+
+  #To view H2 console : <domin>/h2-console
+  h2:
+    console.enabled: true
+
+  # if true, will automatically run the job
+  batch:
+    job:
+      enabled: false
+    jdbc:
+      initialize-schema: always
+
