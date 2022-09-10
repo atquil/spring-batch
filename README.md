@@ -1,24 +1,37 @@
-# Batch Processing 
+# Namestey!
+
+## Spring batch with h2-database
+
+It is mimicking the real life scenerio of interacting with SQL database like MySql. 
+
+In this repo you will find two different way to trigger the spring batch. 
+1. By using endpoint `spring.batch.job.enabled= false`
+2. Automatic trigger of Batch Job `spirng.batch.job.enabled=true`
+
+Moreover, we can also enable, asynchronous job, by simply telling the step to execute it in similar fashion
+```aidl
+ @Bean
+    public TaskExecutor taskExecutor() {
+        SimpleAsyncTaskExecutor asyncTaskExecutor = new SimpleAsyncTaskExecutor();
+        asyncTaskExecutor.setConcurrencyLimit(10);
+        return asyncTaskExecutor;
+    }
 ```
-What ?  It's a method for processing a large amount of data in a consistent manner. 
 
-Why ? To efficiently process, large number of iterative data jobs
+uncomment task executor to run asynchronous job
 
+```aidl
+
+    @Bean
+    public Step step1() {
+        return stepBuilderFactory.get("csv-step").<Employee, Employee>chunk(10)
+                .reader(reader())
+                .processor(processor())
+                .writer(writer())
+                .taskExecutor(taskExecutor())
+                .build();
+    }
 ```
-
-# Spring batch
-
-```
-It is lightweight comprehensive framework which enable development of robust batch applications 
-```
-
-## Features : 
-
-1. **Efficiency** : When resource are provided, it allows company to efficiently process data.
-2. **Chunk based processing** : Helps in setting limitation for data processing 
-3. **Simplicity** : Simple and easy to set-up then batch processing
-4. **Business Intelligence** : Process large volume of data quickly, and many records parallely thus providing power to take action faster
-
 ## Spring Batch Architecture
 
 ![Spring Batch Architecture](Spring%20Batch%20Architecture.gif)
@@ -31,9 +44,20 @@ It is lightweight comprehensive framework which enable development of robust bat
 4. `Task Orchestration`: To execute some complex task, having several macro operation spring batch provide Spring cloud dataflow
 5. `ETL (Extract, Transform and Load)`: Generated file periodically needs to be transformed and loaded in database
 
-Credits: 
-1. Spring.io: https://spring.io/guides/gs/batch-processing/
-2. Hevodata: https://hevodata.com/learn/spring-batch-jobs/
-3. Top Total: https://www.toptal.com/spring/spring-batch-tutorial
-4. Giuliana Bexerra : https://giuliana-bezerra.medium.com/why-you-should-be-using-spring-batch-for-batch-processing-83f5aafb965f
-5. JavaTechie: https://www.youtube.com/watch?v=hr2XTbKSdAQ&ab_channel=JavaTechie 
+## Outputs
+
+After stating the application 
+
+1. Open the database console using <domainname>/h2-console
+
+![h2-console](src/main/resources/images/loginInToH2.png)
+
+2. Check the database before hitting the endpoint
+
+![Blank Databasea](src/main/resources/images/beforeHittingEndpoint.png)
+
+3. Hit the endpoint
+![Endpoint](src/main/resources/images/endpoint.png)
+
+4. After hitting the endpoint
+![Data](src/main/resources/images/afterHittingEndpoint.png)
