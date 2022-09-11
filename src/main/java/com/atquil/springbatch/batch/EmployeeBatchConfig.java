@@ -73,7 +73,7 @@ public class EmployeeBatchConfig {
 
     @Bean
     public Job runJob() {
-        return jobBuilderFactory.get("importCustomers")
+        return jobBuilderFactory.get("EmployeeJob")
                 .flow(step1()).end().build();
 
     }
