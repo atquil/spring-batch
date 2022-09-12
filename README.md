@@ -3,7 +3,7 @@
 ## Spring batch with h2-database
 
 Youtube tutorial
-[![spring-batch](src/main/resources/images/SpringBatch.png)](https://www.youtube.com/watch?v=KjNVqnuBqj8&ab_channel=AtulAnand)
+[![spring-batch](src/main/resources/images/SpringBatch.png)](https://www.youtube.com/watch?v=ofdNwWilIE4&ab_channel=atquil)
 
 It is mimicking the real life scenerio of interacting with SQL database like MySql. 
 
