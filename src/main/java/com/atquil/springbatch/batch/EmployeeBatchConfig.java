@@ -10,6 +10,7 @@ import org.springframework.batch.core.configuration.annotation.JobBuilderFactory
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.batch.core.launch.support.RunIdIncrementer;
 import org.springframework.batch.item.data.RepositoryItemWriter;
+import org.springframework.batch.item.data.builder.RepositoryItemWriterBuilder;
 import org.springframework.batch.item.database.BeanPropertyItemSqlParameterSourceProvider;
 import org.springframework.batch.item.database.JdbcBatchItemWriter;
 import org.springframework.batch.item.database.builder.JdbcBatchItemWriterBuilder;
@@ -61,6 +62,17 @@ public class EmployeeBatchConfig {
         return writer;
     }
 
+    //By using builder - easier way.
+   /*
+    @Bean
+    public RepositoryItemWriter<Employee> writer() {
+        return new RepositoryItemWriterBuilder<Employee>()
+                .methodName("save")
+                .repository(employeeRepo)
+                .build();
+    }
+    */
+
     @Bean
     public Step step1() {
         return stepBuilderFactory.get("csv-step").<Employee, Employee>chunk(10)
@@ -73,7 +85,7 @@ public class EmployeeBatchConfig {
 
     @Bean
     public Job runJob() {
-        return jobBuilderFactory.get("EmployeeJob")
+        return jobBuilderFactory.get("employeeJob")
                 .flow(step1()).end().build();
 
     }
